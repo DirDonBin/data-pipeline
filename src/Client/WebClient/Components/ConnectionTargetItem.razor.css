@@ -1,0 +1,123 @@
+﻿::deep.source-item {
+    background-color: #E2E2E21A;
+    margin-bottom: 52px;
+    border-radius: 10px;
+}
+
+    ::deep.source-item .source-content {
+        display: flex;
+        flex-wrap: nowrap;
+        min-height: 136px;
+        align-items: center;
+        padding: 30px;
+    }
+
+        ::deep.source-item .source-content .source-test-connect-btn {
+            background-color: #CBC4D0;
+            font-size: 14px;
+            text-transform: unset;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 10px;
+            height: 46px;
+            margin-left: 56px;
+            max-width: 200px;
+            width: 100%;
+        }
+
+
+    ::deep.source-item .mud-select {
+        background-color: #FFFFFF1A;
+        border-radius: 5px;
+        max-width: 730px;
+        height: 56px;
+    }
+
+        ::deep.source-item .mud-select svg {
+            fill: #DDDDDD;
+        }
+
+        ::deep.source-item .mud-select .mud-select-input {
+            color: #DDDDDD;
+        }
+
+        ::deep.source-item .mud-select .mud-input-outlined-border {
+            border-color: transparent;
+        }
+
+    ::deep.source-item .source-content .source-error-text {
+        color: #FFFFFF80;
+        margin-left: auto;
+    }
+
+    ::deep.source-item .source-content .source-delete-btn {
+        margin-left: auto;
+        width: 41px;
+        height: 41px;
+    }
+
+        ::deep.source-item .source-content .source-delete-btn svg {
+            fill: #E93131;
+            width: 31px;
+            height: 31px;
+        }
+
+    ::deep.source-item .source-content .source-expend-btn {
+        width: 41px;
+        height: 41px;
+    }
+
+        ::deep.source-item .source-content .source-expend-btn svg {
+            fill: #DDDDDD;
+            width: 31px;
+            height: 31px;
+        }
+
+
+    ::deep.source-item .source-expend-content {
+        color: #DDDDDD;
+    }
+
+        ::deep.source-item .source-expend-content .source-expend-content-mg {
+            padding: 0 30px 30px 30px;
+            color: #DDDDDD;
+        }
+
+
+        ::deep.source-item .source-expend-content .source-expend-input-label {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+
+            ::deep.source-item .source-expend-content .source-expend-input-label div.source-expend-input {
+                width: 70%;
+                margin-left: auto;
+                color: #DDDDDD;
+                background-color: #FFFFFF1A;
+            }
+
+            ::deep.source-item .source-expend-content .source-expend-input-label input.source-expend-input {
+                margin-left: auto;
+                color: #DDDDDD;
+                background-color: #FFFFFF1A;
+            }
+
+                ::deep.source-item .source-expend-content .source-expend-input-label .source-expend-input .mud-input-outlined-border {
+                    border: none;
+                }
+
+
+        ::deep.source-item .source-expend-content .mud-collapse-wrapper-inner {
+            display: flex;
+            max-width: 730px;
+            flex-direction: column;
+        }
+
+
+        ::deep.source-item .source-expend-content .source-expend-input-file button {
+            background-color: #7A36AE;
+            box-shadow: none !important;
+        }

@@ -1,0 +1,131 @@
+﻿@page "/pipeline-edit"
+@page "/pipeline-edit/{id:int?}"
+@using MudBlazor
+
+@code {
+	private int _index;
+	private bool _completed => _index == 2;
+}
+
+<div>
+	<MudInput @bind-Value="Name"
+			  Variant="Variant.Filled"
+			  Class="pipeline-name" />
+
+	<MudPaper>
+		<MudStepper @bind-ActiveIndex="_index" CenterLabels="true" Class="steper">
+			<ChildContent>
+				<MudStep Title="Шаг 1" SecondaryText="Указать источники данных">
+					<div>
+						<ConnectionSources ConnectonItems="_connectonItems"
+										   CreateOrExists="true" />
+					</div>
+				</MudStep>
+
+				<MudStep Title="Шаг 2" SecondaryText="Указать таргеты данных">
+					<div>
+						<ConnectionTargets ConnectonTargetItems="_connectonTargetItems" />
+					</div>
+				</MudStep>
+
+				<MudStep Title="Шаг 3" SecondaryText="Саммари">
+					<div class="summary">
+						<div class="summary-source">
+							<p>Источники</p>
+							<ul>
+								@foreach (var item in _connectonItems)
+								{
+									<li class="summary-number">
+										Источник @(_connectonItems.IndexOf(item) + 1)
+									</li>
+									<li>
+										тип: @item.Type
+									</li>
+									@if (item.Type == "База данных")
+									{
+
+										<li>
+											параметры подключения
+											<ul>
+												<li>хост: @item.Host</li>
+												<li>порт: @item.Port</li>
+												<li>логин: @item.Login</li>
+												<li>пароль: @item.Password</li>
+												<li>база данных: @item.DataBase</li>
+											</ul>
+										</li>
+									}
+								}
+							</ul>
+						</div>
+						<div class="summary-target">
+							<p>Таргеты</p>
+							<ul>
+								@foreach (var item in _connectonTargetItems)
+								{
+									<li class="summary-number">
+										Таргет @(_connectonTargetItems.IndexOf(item) + 1)
+									</li>
+									<li>
+										тип: @item.Type
+									</li>
+									@if (item.Type == "База данных")
+									{
+
+										<li>
+											параметры подключения
+											<ul>
+												<li>хост: @item.Host</li>
+												<li>порт: @item.Port</li>
+												<li>логин: @item.Login</li>
+												<li>пароль: @item.Password</li>
+												<li>база данных: @item.DataBase</li>
+											</ul>
+										</li>
+									}
+								}
+							</ul>
+						</div>
+					</div>
+				</MudStep>
+			</ChildContent>
+
+			<ActionContent Context="stepper">
+				@if (!_completed)
+				{
+					<MudButton OnClick="@(() => stepper.PreviousStepAsync())"
+							   StartIcon="@Icons.Material.Filled.ArrowBack"
+							   Color="Color.Primary"
+							   Disabled="@(_index <= 0)"
+							   Class="mud-stepper-button-previous">
+						Назад
+					</MudButton>
+					<MudSpacer />
+					<MudButton OnClick="@(() => stepper.NextStepAsync())"
+							   EndIcon="@Icons.Material.Filled.ArrowForward"
+							   Color="Color.Primary"
+							   Class="mud-stepper-button-next">
+						Далее
+					</MudButton>
+				}
+				else
+				{
+					<MudButton OnClick="@(() => stepper.PreviousStepAsync())"
+							   StartIcon="@Icons.Material.Filled.ArrowBack"
+							   Color="Color.Primary"
+							   Disabled="@(_index <= 0)"
+							   Class="mud-stepper-button-previous">
+						Назад
+					</MudButton>
+					<MudSpacer />
+					<MudButton StartIcon="@Icons.Material.Outlined.AutoAwesome"
+							   Color="Color.Primary"
+							   Class="mud-stepper-button-complete"
+							   OnClick="@(async () => await OnClickSave())">
+						Сгенерировать Pipeline
+					</MudButton>
+				}
+			</ActionContent>
+		</MudStepper>
+	</MudPaper>
+</div>

@@ -1,0 +1,30 @@
+﻿::deep.modal-content{
+    height: 100%;
+}
+
+::deep .mud-input {
+    color: #DDDDDD !important;
+    height: 100% !important;
+}
+
+    ::deep .mud-input.mud-input-outlined .mud-input-outlined-border {
+        border: none;
+    }
+
+::deep .edit-btn {
+    background: #64EDF0;
+    width: 213px;
+    height: 46px;
+    angle: 0 deg;
+    opacity: 1;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    margin: auto 20px 20px auto;
+}
+
+::deep .edit-btn:hover {
+    color: #DDD;
+}

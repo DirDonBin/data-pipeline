@@ -1,0 +1,111 @@
+{
+  "api": {
+    "host": "0.0.0.0",
+    "port": 8080,
+    "reload": false,
+    "log_level": "warning",
+    "max_request_size_mb": 100,
+    "request_timeout": 60
+  },
+  "deepseek": {
+    "api_key": "{key}",
+    "base_url": "https://api.deepseek.com",
+    "model": "deepseek-chat",
+    "max_tokens": null,
+    "temperature": 0.3,
+    "timeout": 60
+  },
+  "hadoop": {
+    "cluster_url": "hdfs://hadoop-namenode:8020",
+    "csv_data_path": "/user/datapipeline/uploads/csv/",
+    "json_data_path": "/user/datapipeline/uploads/json/",
+    "xml_data_path": "/user/datapipeline/uploads/xml/",
+    "default_replication": 3
+  },
+  "spark": {
+    "master_url": "spark://spark-master:7077",
+    "app_name": "LCT_Data_Pipeline",
+    "executor_memory": "2g",
+    "executor_cores": 2,
+    "driver_memory": "1g",
+    "driver_cores": 1,
+    "adaptive_query_execution": true,
+    "dynamic_partition_pruning": true,
+    "broadcast_join_threshold": "10MB"
+  },
+  "database": {
+    "default_host": "postgres-main",
+    "default_port": 5432,
+    "default_database": "lct_data",
+    "default_user": "admin",
+    "default_password": "postgres",
+    "default_schema": "public"
+  },
+  "ai_prompts": {
+    "storage_recommendation": "Проанализируй данные источники и цели для миграции данных.\n\nИсточники: {sources}\nЦели: {targets}\nБизнес-контекст: {business_context}\n\nДай рекомендацию по выбору системы хранения данных. Учти:\n1. Объем данных и структуру\n2. Целевую систему\n3. Требования к производительности\n4. Сложность трансформации\n\nОтветь в JSON формате со следующими полями: storage_type, confidence, reasoning, transformation_steps, performance_estimate, cost_estimate",
+    "schema_analysis": "Проанализируй схему данных для оптимизации пайплайна.\n\nСхема источника: {source_schema}\nСхема цели: {target_schema}\n\nДай рекомендации по:\n1. Оптимизация индексов\n2. Типы данных\n3. Ограничения целостности\n4. Партиционирование\n\nОтветь в JSON формате с конкретными рекомендациями.",
+    "performance_tuning": "Дай рекомендации по оптимизации производительности пайплайна.\n\nПараметры:\n- Объем данных: {data_volume}\n- Тип источника: {source_type}\n- Тип цели: {target_type}\n- Доступные ресурсы: {resources}\n\nПредложи оптимизации для Spark, размер батчей, параллелизм."
+  },
+  "callbacks": {
+    "timeout": 30,
+    "retry_attempts": 3,
+    "retry_delay": 5,
+    "default_callback_url": null
+  },
+  "logging": {
+    "format": "[%(levelname)s] %(name)s: %(message)s",
+    "date_format": "%Y-%m-%d %H:%M:%S",
+    "level": "INFO",
+    "mask_passwords": true
+  },
+  "pipeline_defaults": {
+    "default_retries": 1,
+    "retry_delay_minutes": 5,
+    "max_execution_time_hours": 24,
+    "enable_monitoring": true,
+    "enable_spark_distribution": false
+  },
+  "validation": {
+    "max_error_rate": 0.05,
+    "min_data_quality_threshold": 0.8,
+    "enable_schema_validation": true,
+    "enable_data_profiling": true
+  },
+  "security": {
+    "mask_passwords_in_logs": true,
+    "enable_request_validation": true,
+    "allowed_file_extensions": [".csv", ".json", ".xml", ".parquet"],
+    "max_file_size_mb": 1000
+  },
+  "integration": {
+    "platform_base_url": "https://lct-platform.ru",
+    "api_version": "v1",
+    "callback_endpoint": "/api/pipeline-callback",
+    "status_endpoint": "/api/pipeline-status",
+    "health_check_interval": 60
+  },
+  "fallback_responses": {
+    "ai_unavailable": {
+      "storage_type": "PostgreSQL",
+      "confidence": 0.88,
+      "reasoning": "Fallback рекомендация - PostgreSQL для общих задач",
+      "transformation_steps": ["Базовая схема", "Стандартные индексы"],
+      "performance_estimate": "~10-15 секунд для обработки",
+      "cost_estimate": "Низкая"
+    }
+  },
+  "kafka": {
+    "bootstrap_servers": ["kafka-broker-1:29001", "kafka-broker-2:29002"],
+    "consumer_group_id": "intelligent-data-engineer-group",
+    "topics": {
+      "request": "ai-pipeline-request",
+      "response": "ai-pipeline-response"
+    },
+    "auto_offset_reset": "latest",
+    "timeout": 10,
+    "enabled": true
+  },
+  "version": "2.0.0",
+  "environment": "development",
+  "debug": false
+}

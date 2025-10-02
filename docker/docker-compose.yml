@@ -1,0 +1,12 @@
+include:
+  - docker-compose.base.yml
+  - docker-compose.kafka.yml
+  - docker-compose.hadoop.yml
+  - docker-compose.spark.yml
+  - docker-compose.airflow.yml
+  - docker-compose.ai.yml
+  - docker-compose.app.yml
+
+networks:
+  default:
+    name: data_pipeline_network

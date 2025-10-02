@@ -1,0 +1,51 @@
+x-app-env: &app_env_common
+  - ASPNETCORE_ENVIRONMENT=Production
+
+services:
+  app-gateway:
+    container_name: app-gateway
+    hostname: app-gateway
+    build: 
+      context: ../src/Server
+      dockerfile: ./Dockerfile.gateway
+    ports:
+      - "12000:8080"
+    environment: *app_env_common
+    depends_on:
+      - ai-intelligent-data-engineer
+
+  app-data-processing-1:
+    container_name: app-data-processing-1
+    hostname: app-data-processing-1
+    build: 
+      context: ../src/Server
+      dockerfile: ./Dockerfile.data-processing
+    ports:
+      - "12010:8080"
+    environment: *app_env_common
+    depends_on:
+      - ai-intelligent-data-engineer
+
+  app-internal-1:
+    container_name: app-internal-1
+    hostname: app-internal-1
+    build: 
+      context: ../src/Server
+      dockerfile: ./Dockerfile.internal
+    ports:
+      - "12020:8080"
+    environment: *app_env_common
+    depends_on:
+      - ai-intelligent-data-engineer
+
+  app-client:
+    container_name: app-client
+    hostname: app-client
+    build: 
+      context: ../src/Client
+      dockerfile: ./Dockerfile.client
+    ports:
+      - "12030:8080"
+    environment: *app_env_common
+    depends_on:
+      - ai-intelligent-data-engineer

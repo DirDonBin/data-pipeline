@@ -1,0 +1,6 @@
+# Generated/
+
+nswag-temp-*.json
+
+bin/
+obj/

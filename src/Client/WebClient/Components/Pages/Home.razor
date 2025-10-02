@@ -1,0 +1,85 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Authorization
+@using MudBlazor
+@using WebClient.Utils
+
+<PageTitle>Цифровой инженер данных</PageTitle>
+
+<div>
+	<h1>Цифровой инженер данных</h1>
+	<h2>ЛЦТ-2025</h2>
+
+	<div class="cards">
+		<MudCard Class="card-item">
+			<MudCardHeader>
+				FAQ
+			</MudCardHeader>
+			<MudCardContent>
+				<MudIcon Icon="@Icons.Material.Outlined.HelpOutline" />
+
+				<p Class="card-big-text">
+					Прочитать руководство пользователя
+				</p>
+
+				<p Class="card-description">
+					рекомендуем ознакомиться перед началом использования
+				</p>
+
+				<MudCardActions>
+					<MudButton EndIcon="@Icons.Material.Outlined.ArrowDownward"
+							   Href="faq">
+						Перейти
+					</MudButton>
+				</MudCardActions>
+			</MudCardContent>
+		</MudCard>
+
+		<MudCard Class="card-item">
+			<MudCardHeader>
+				Источники и таргеты
+			</MudCardHeader>
+			<MudCardContent>
+				<MudIcon Icon="@Icons.Material.Outlined.Cloud" />
+
+				<p Class="card-big-text">
+					Настроить источники и таргеты
+				</p>
+
+				<p Class="card-description">
+					вы сможете сделать это и позже в любой момент
+				</p>
+
+				<MudCardActions>
+					<MudButton EndIcon="@Icons.Material.Outlined.ArrowDownward"
+							   Href="connections">
+						Настроить
+					</MudButton>
+				</MudCardActions>
+			</MudCardContent>
+		</MudCard>
+
+		<MudCard Class="card-item">
+			<MudCardHeader>
+				Pipeline
+			</MudCardHeader>
+			<MudCardContent>
+				<MudIcon Icon="@Icons.Material.Outlined.AutoAwesome" />
+
+				<p Class="card-big-text">
+					Создать Pipeline
+				</p>
+
+				<p Class="card-description">
+					для начала анализа источников данных, проектирования ETL-процессов
+				</p>
+
+				<MudCardActions>
+					<MudButton StartIcon="@Icons.Material.Outlined.Add"
+							   Href="pipeline-edit">
+						Новый Pipeline
+					</MudButton>
+				</MudCardActions>
+			</MudCardContent>
+		</MudCard>
+	</div>
+</div>

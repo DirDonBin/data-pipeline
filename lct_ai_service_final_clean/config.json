@@ -1,0 +1,64 @@
+{
+  "api": {
+    "host": "0.0.0.0",
+    "port": 8080,
+    "reload": false,
+    "log_level": "warning",
+    "max_request_size_mb": 100,
+    "request_timeout": 60
+  },
+  "deepseek": {
+    "api_key": "{key}",
+    "base_url": "https://api.deepseek.com",
+    "model": "deepseek-chat",
+    "max_tokens": null,
+    "temperature": 0.3,
+    "timeout": 60
+  },
+  "hadoop": {
+    "cluster_url": "hdfs://hadoop-namenode:8020",
+    "csv_data_path": "/user/datapipeline/uploads/csv/",
+    "json_data_path": "/user/datapipeline/uploads/json/",
+    "xml_data_path": "/user/datapipeline/uploads/xml/",
+    "default_replication": 3
+  },
+  "spark": {
+    "master_url": "spark://spark-master:7077",
+    "app_name": "LCT_Data_Pipeline",
+    "executor_memory": "2g",
+    "executor_cores": 2,
+    "driver_memory": "1g",
+    "driver_cores": 1,
+    "adaptive_query_execution": true,
+    "dynamic_partition_pruning": true,
+    "broadcast_join_threshold": "10MB"
+  },
+  "database": {
+    "default_host": "postgres-main",
+    "default_port": 5432,
+    "default_database": "lct_data",
+    "default_user": "admin",
+    "default_password": "postgres",
+    "default_schema": "public"
+  },
+  "kafka": {
+    "bootstrap_servers": ["kafka-broker-1:29001", "kafka-broker-2:29002"],
+    "consumer_group_id": "intelligent-data-engineer-group",
+    "topics": {
+      "request": "ai-pipeline-request",
+      "response": "ai-pipeline-response"
+    },
+    "auto_offset_reset": "latest",
+    "timeout": 10,
+    "enabled": true
+  },
+  "logging": {
+    "format": "[%(levelname)s] %(name)s: %(message)s",
+    "date_format": "%Y-%m-%d %H:%M:%S",
+    "level": "INFO",
+    "mask_passwords": true
+  },
+  "version": "2.0.0",
+  "environment": "development",
+  "debug": false
+}

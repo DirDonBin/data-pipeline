@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # Наш AI сервис
+  intelligent-data-engineer:
+    build: .
+    container_name: ai-intelligent-data-engineer
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka-broker:9092
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      - LOG_LEVEL=INFO
+    depends_on:
+      - kafka-broker
+    networks:
+      - lct-network
+    restart: unless-stopped
+
+  # Расширение для их существующих сервисов
+  # Добавить в их docker-compose.yml:
+  
+  # Обновление сервиса ai (если существует)
+  ai-enhanced:
+    image: ai-intelligent-data-engineer
+    build: 
+      context: ./intelligent_data_engineer
+      dockerfile: Dockerfile
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka-broker:9092
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=lct_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - kafka-broker
+      - postgres
+      - redis-airflow
+    networks:
+      - lct-network
+    restart: unless-stopped
+    volumes:
+      - ./generated_dags:/app/generated_dags
+      - ./logs:/app/logs
+
+networks:
+  lct-network:
+    external: true  # Подключаемся к их существующей сети
+
+volumes:
+  ai_data:
+    driver: local

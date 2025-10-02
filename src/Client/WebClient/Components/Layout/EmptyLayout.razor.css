@@ -1,0 +1,14 @@
+﻿.page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+article{
+    padding: 0;
+}
+
+main {
+    flex: 1;
+    background-color: #372D40;
+}

@@ -1,0 +1,142 @@
+﻿@page "/pipeline/{id:int}"
+@using Blazor.Diagrams.Components
+@using MudBlazor
+@using WebClient.Enums
+
+<div>
+	@if (_isBlocked)
+	{
+		<MudProgressLinear Color="Color.Primary" Striped="true" Indeterminate="true" Size="Size.Medium" Value="75" Class="my-7" />
+	}
+
+	<div class="title">
+		<div class="status" style="background-color: @_statusColor(_pipeline.Status);"></div>
+		<h3>@_pipeline.Name</h3>
+	</div>
+
+
+	<MudTabs Elevation="2"
+			 Rounded="true"
+			 ApplyEffectsToContainer="true"
+			 PanelClass="pa-6"
+			 Class="tab-menu"
+			 @bind-ActivePanelIndex="_index">
+
+		<MudTabPanel Text="Основная информация">
+			<div class="summary">
+				<div class="summary-source">
+					<p>Источники</p>
+					<ul>
+						@foreach (var item in _pipeline.ConnectonItems)
+						{
+							<li class="summary-number">
+								Источник @(_pipeline.ConnectonItems.IndexOf(item) + 1)
+							</li>
+							<li>
+								тип: @item.Type
+							</li>
+							@if (item.Type == "File")
+							{
+
+								<li>
+									параметры подключения
+									<ul>
+										<li>хост: @item.Host</li>
+										<li>порт: @item.Port</li>
+										<li>логин: @item.Login</li>
+										<li>пароль: @item.Password</li>
+										<li>база данных: @item.DataBase</li>
+									</ul>
+								</li>
+							}
+						}
+					</ul>
+				</div>
+				<div class="summary-target">
+					<p>Таргеты</p>
+					<ul>
+						@foreach (var item in _pipeline.ConnectonTargetItems)
+						{
+							<li class="summary-number">
+								Таргет @(_pipeline.ConnectonTargetItems.IndexOf(item) + 1)
+							</li>
+							<li>
+								тип: @item.Type
+							</li>
+							@if (item.Type != "File")
+							{
+
+								<li>
+									параметры подключения
+									<ul>
+										<li>хост: @item.Host</li>
+										<li>порт: @item.Port</li>
+										<li>логин: @item.Login</li>
+										<li>пароль: @item.Password</li>
+										<li>база данных: @item.DataBase</li>
+									</ul>
+								</li>
+							}
+						}
+					</ul>
+				</div>
+			</div>
+		</MudTabPanel>
+
+		<MudTabPanel Text="Структура Pipeline">
+			<PipelineDiagram />
+		</MudTabPanel>
+
+		<MudTabPanel Text="история запусков">
+			<MudTable Items="@_pipeline.RunHistory"
+					  Hover="true"
+					  Breakpoint="Breakpoint.Sm"
+					  Class="run-history-table">
+				<HeaderContent>
+					<MudTh>Дата начала</MudTh>
+					<MudTh>Дата завершения</MudTh>
+					<MudTh>Статус</MudTh>
+					<MudTh>Описание</MudTh>
+				</HeaderContent>
+				<RowTemplate>
+					<MudTd DataLabel="Дата начала">@context.StartAt.ToString("dd.MM.yyyy HH:mm")</MudTd>
+					<MudTd DataLabel="Дата завершения">@context.EndAt.ToString("dd.MM.yyyy HH:mm")</MudTd>
+					<MudTd DataLabel="Статус" Style="@($"background-color: {_statusColor(context.Status)};")">@context.Status.ToString()</MudTd>
+					<MudTd DataLabel="Описание">@context.Description</MudTd>
+				</RowTemplate>
+			</MudTable>
+
+		</MudTabPanel>
+
+	</MudTabs>
+
+	<div class="btn-block">
+		@if (_index == 0)
+		{
+			<MudButton Href="@($"/pipeline-edit/{Id}")"
+					   Class="btn-pipline"
+					   Disabled="_isBlocked">
+				Редактировать
+			</MudButton>
+		}
+		else if (_index == 1)
+		{
+			<MudButton Class="btn-pipline"
+					   Disabled="_isBlocked"
+					   OnClick="@(async () => await OnClickEditDag())">
+				Редактировать DAG
+			</MudButton>
+
+			<MudButton Class="btn-pipline"
+					   Disabled="_isBlocked"
+					   OnClick="@(async () => await OnClickGenerationDescription())">
+				Описание генерации
+			</MudButton>
+		}
+
+		<MudButton Class="start-btn"
+				   Disabled="_isBlocked">
+			Запустить Pipeline
+		</MudButton>
+	</div>
+</div>

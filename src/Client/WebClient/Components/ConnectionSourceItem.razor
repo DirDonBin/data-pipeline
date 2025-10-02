@@ -1,0 +1,82 @@
+﻿@using MudBlazor
+<div class="source-item">
+	<div class="source-content">
+		<MudSelect @bind-Value="Info.Type"
+				   Placeholder="Выбрать подключение"
+				   Class="source-type"
+				   Variant="Variant.Outlined">
+			@foreach (var state in Types)
+			{
+				<MudSelectItem Value="state">@state</MudSelectItem>
+			}
+		</MudSelect>
+		<MudButton Class="source-test-connect-btn">Тест подключения</MudButton>
+
+		<p class="source-error-text">
+			@Info.Error
+		</p>
+
+		<MudIconButton Icon="@Icons.Material.Outlined.Delete"
+					   Class="source-delete-btn" 
+					   OnClick="OnDeleteBtnClick" />
+
+		<MudIconButton Icon="@_expandedBtnIcon"
+					   Class="source-expend-btn"
+					   OnClick="OnExpandCollapseClick" />
+
+	</div>
+	<div>
+		<MudCollapse Expanded="_expanded"
+					 Class="source-expend-content">
+			<div class="source-expend-content-mg">
+				@if (Info.Type == "Файл")
+				{
+					<MudFileUpload @bind-Files="file"
+								   Class="source-expend-input-file"
+								   OnFilesChanged="@(async () => await OnFilesChanged())">
+						<ActivatorContent>
+							<MudButton Variant="Variant.Filled"
+									   Color="Color.Primary"
+									   StartIcon="@Icons.Material.Filled.CloudUpload">
+								Выбрать файл
+							</MudButton>
+						</ActivatorContent>
+					</MudFileUpload>
+				}
+				else if (Info.Type == "PostgreSql" || Info.Type == "ClickHouse")
+				{
+					<label class="source-expend-input-label">
+						Хост
+						<MudInput Class="source-expend-input"
+								  Variant="Variant.Outlined"
+								  @bind-Value="Info.Host" />
+					</label>
+					<label class="source-expend-input-label">
+						Порт
+						<MudInput Class="source-expend-input"
+								  Variant="Variant.Outlined"
+								  @bind-Value="Info.Port" />
+					</label>
+					<label class="source-expend-input-label">
+						Логин
+						<MudInput Class="source-expend-input"
+								  Variant="Variant.Outlined"
+								  @bind-Value="Info.Login" />
+					</label>
+					<label class="source-expend-input-label">
+						Пароль
+						<MudInput Class="source-expend-input"
+								  Variant="Variant.Outlined"
+								  @bind-Value="Info.Password" />
+					</label>
+					<label class="source-expend-input-label">
+						База Данных
+						<MudInput Class="source-expend-input"
+								  Variant="Variant.Outlined"
+								  @bind-Value="Info.DataBase" />
+					</label>
+				}
+			</div>
+		</MudCollapse>
+	</div>
+</div>

@@ -1,0 +1,18 @@
+::deep .add-new-pipline-btn {
+    background-color: #CBC4D0;
+    font-size: 14px;
+    text-transform: unset;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 10px;
+    height: 46px;
+    max-width: 200px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+    ::deep .add-new-pipline-btn svg {
+        fill: #424242;
+        width: 31px;
+        height: 31px;
+    }

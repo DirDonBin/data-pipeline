@@ -1,0 +1,68 @@
+x-kafka-env: &kafka_env_common
+  CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+  KAFKA_PROCESS_ROLES: broker,controller
+  KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-broker-1:9101,2@kafka-broker-2:9102
+  KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+  KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+  KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+  KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
+  KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 2
+  KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 2
+  KAFKA_LOG_DIRS: /var/lib/kafka/data
+
+services:
+  kafka-broker-1:
+    image: confluentinc/cp-kafka:latest
+    hostname: kafka-broker-1
+    container_name: kafka-broker-1
+    ports:
+      - "9001:9001"
+      - "9101:9101"
+    environment:
+      <<: *kafka_env_common
+      KAFKA_NODE_ID: 1
+      KAFKA_LISTENERS: INTERNAL://:29001,EXTERNAL://:9001,CONTROLLER://:9101
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-broker-1:29001,EXTERNAL://localhost:9001
+    volumes:
+      - ./volumes/kafka-broker-1:/var/lib/kafka/data
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-broker-api-versions --bootstrap-server localhost:9001 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  kafka-broker-2:
+    image: confluentinc/cp-kafka:latest
+    hostname: kafka-broker-2
+    container_name: kafka-broker-2
+    ports:
+      - "9002:9002"
+      - "9102:9102"
+    environment:
+      <<: *kafka_env_common
+      KAFKA_NODE_ID: 2
+      KAFKA_LISTENERS: INTERNAL://:29002,EXTERNAL://:9002,CONTROLLER://:9102
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-broker-2:29002,EXTERNAL://localhost:9002
+    volumes:
+      - ./volumes/kafka-broker-2:/var/lib/kafka/data
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-broker-api-versions --bootstrap-server localhost:9002 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    hostname: kafka-ui
+    ports:
+      - "10000:8080"
+    environment:
+      DYNAMIC_CONFIG_ENABLED: "true"
+      KAFKA_CLUSTERS_0_NAME: datapipeline-cluster
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka-broker-1:29001,kafka-broker-2:29002
+    depends_on:
+      - kafka-broker-1
+      - kafka-broker-2

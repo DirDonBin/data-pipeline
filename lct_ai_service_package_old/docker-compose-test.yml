@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # AI сервис для команды ЛЦТ
+  lct-ai-service:
+    build: .
+    container_name: lct-ai-service-test
+    environment:
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-demo_key}
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - LOG_LEVEL=INFO
+    command: python test_service.py
+    volumes:
+      - ./generated_dags:/app/generated_dags
+      - ./logs:/app/logs
+    networks:
+      - lct-test-network
+
+  # Симуляция Kafka для тестов (опционально)
+  # kafka:
+  #   image: confluentinc/cp-kafka:latest
+  #   environment:
+  #     KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+  #     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+  #     KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+  #   networks:
+  #     - lct-test-network
+
+networks:
+  lct-test-network:
+    driver: bridge
+
+volumes:
+  generated_dags:
+  logs:

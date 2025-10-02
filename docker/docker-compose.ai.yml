@@ -1,0 +1,49 @@
+ services:
+  ai-intelligent-data-engineer:
+    container_name: ai-intelligent-data-engineer
+    hostname: ai-intelligent-data-engineer
+    build: 
+      context: ../lct_ai_service_final_clean/
+      dockerfile: ./Dockerfile
+    environment:
+      # AI Configuration
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-{key}}}
+      - AI_TEMPERATURE=0.3
+      
+      # Database Configuration
+      - POSTGRES_HOST=postgres-main
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=lct_db
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=postgres
+      
+      # Kafka Configuration
+      - KAFKA_BOOTSTRAP_SERVERS=kafka-broker-1:29001
+      - KAFKA_REQUEST_TOPIC=ai-pipeline-request
+      - KAFKA_RESPONSE_TOPIC=ai-pipeline-response
+      
+      # Hadoop Configuration
+      - HADOOP_NAMENODE=hadoop-namenode:9000
+      - HDFS_URL=hdfs://hadoop-namenode:9000
+      
+      # Spark Configuration
+      - SPARK_MASTER=spark://spark-master:7077
+      - SPARK_ENABLED=true
+    volumes:
+      - ./volumes/ai/data:/app/data
+      - ./volumes/ai/logs:/app/logs
+      - ./volumes/ai/output:/app/output
+      - ./volumes/ai/hadoop_data:/app/hadoop_data
+      - ./volumes/ai/spark_data:/app/spark_data
+    depends_on:
+      kafka-broker-1:
+        condition: service_healthy
+      kafka-broker-2:
+        condition: service_healthy
+      spark-master:
+        condition: service_started
+      hadoop-namenode:
+        condition: service_started
+    networks:
+      - default
+    restart: unless-stopped

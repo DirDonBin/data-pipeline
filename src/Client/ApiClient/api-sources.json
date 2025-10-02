@@ -1,0 +1,23 @@
+{
+  "gatewayBaseUrl": "https://localhost:7234",
+  "apis": [
+    {
+      "name": "data",
+      "displayName": "Data Processing API",
+      "openApiPath": "/data/openapi/v1.json",
+      "namespace": "DataPipeline.ApiClient.Data",
+      "clientClass": "DataApiClient",
+      "exceptionClass": "DataApiException",
+      "outputFile": "Generated/DataApiClient.g.cs"
+    },
+    {
+      "name": "internal",
+      "displayName": "Internal API",
+      "openApiPath": "/internal/openapi/v1.json",
+      "namespace": "DataPipeline.ApiClient.Internal",
+      "clientClass": "InternalApiClient",
+      "exceptionClass": "InternalApiException",
+      "outputFile": "Generated/InternalApiClient.g.cs"
+    }
+  ]
+}

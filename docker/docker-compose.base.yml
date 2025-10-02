@@ -1,0 +1,21 @@
+services:
+  postgres-main:
+    container_name: postgres-main
+    hostname: postgres-main
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: pipeline
+    volumes:
+      - postgres-main-data:/var/lib/postgresql/data
+    
+
+networks:
+  default:
+    name: data_pipeline_network
+
+volumes:
+  postgres-main-data:

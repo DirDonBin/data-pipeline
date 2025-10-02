@@ -1,0 +1,40 @@
+﻿::deep.diagram-container {
+    width: 100%;
+    height: calc(100vh - 300px);
+    border: 1px solid black; /* Just visual */
+    background-image: radial-gradient(circle, #d1d5db 1px, transparent 1px);
+    background-size: 25px 25px;
+    background-position: 0 0;
+    background-attachment: local;
+}
+
+::deep .diagram-link path:not(.selection-helper) {
+    stroke-dasharray: 10;
+    animation: stroke-run .5s linear infinite;
+}
+
+::deep .selected {
+    outline: 1px rgba(122, 54, 174, 1) dashed;
+    outline-offset: 15px;
+    border-radius: 8px;
+}
+
+    ::deep .selected .card-edit-btn {
+        display: flex;
+    }
+
+::deep .RemoveControl {
+    width: 32px;
+    height: 32px;
+}
+
+::deep .RemoveControl svg{
+    width: 30px;
+    height: 30px;
+}
+
+@keyframes stroke-run {
+    100% {
+        stroke-dashoffset: -20;
+    }
+}

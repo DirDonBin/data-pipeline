@@ -1,0 +1,128 @@
+::deep#nav-panel {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 100%;
+    padding: 10px;
+}
+
+.navbar-toggler:checked ~ .nav-scrollable {
+    display: block;
+}
+
+.nav-item.clip-down {
+    margin-top: auto;
+}
+
+.nav.flex-column {
+    height: 100%;
+}
+
+::deep .sideblock {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    height: 100%;
+}
+
+::deep .user-block {
+    background-color: #3A2749 !important;
+    border-radius: 10px;
+    margin-top: 17px;
+    color: #DDDDDD;
+    width: 100%;
+    height: 84px;
+    padding: 18px;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+    ::deep .user-block img {
+        width: 56px !important;
+        height: 55px !important;
+        border-radius: 13px;
+    }
+
+    ::deep .user-block .user-name {
+        display: flex;
+        align-items: center;
+        margin-left: 17px;
+    }
+
+        ::deep .user-block .user-name * {
+            margin-bottom: 0 !important;
+        }
+
+    ::deep .user-block .btn-exit-block {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        padding-left: 27px !important;
+    }
+
+        ::deep .user-block .btn-exit-block .btn-exit svg {
+            fill: #DDDDDD80 !important;
+        }
+        
+        ::deep .user-block .btn-exit-block .btn-exit svg{
+            width: 30px;
+            height: 30px;
+            background: none !important;
+            border: none;
+        }
+
+            ::deep .user-block .btn-exit-block .btn-exit svg {
+                width: 30px;
+                height: 30px;
+            }
+
+::deep .pipline-block .pipline-item {
+    color: #DDDDDD;
+}
+
+    ::deep .pipline-block .pipline-item .pipline-item-body {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    ::deep .pipline-block .pipline-item .pipeline-data-status {
+        width: 16px;
+        height: 16px;
+        border-radius: 100%;
+        background-color: #DDDDDD;
+        margin-right: 18px;
+        margin-top: 5px;
+    }
+
+        ::deep .pipline-block .pipline-item .pipeline-data-status.success {
+            background-color: #3AA561;
+        }
+
+        ::deep .pipline-block .pipline-item .pipeline-data-status.fail {
+            background-color: #E93131;
+        }
+
+    ::deep .pipline-block .pipline-item .pipeline-data-target,
+    ::deep .pipline-block .pipline-item .pipeline-data-source {
+        font-size: 12px;
+        color: #5FDFF2;
+        margin: 0;
+    }
+
+    ::deep .pipline-block .pipline-item .pipeline-data-name{
+        margin-bottom: 9px;
+    }
+
+    ::deep .pipline-block .pipline-item .pipeline-btn-settings {
+        fill: #DDDDDD;
+        background: unset;
+        border: unset;
+        width: 26px;
+        padding: 0;
+    }
+
+    ::deep .pipline-block .pipline-item .pipeline-btn-settings svg{
+        fill: #DDDDDD;
+    }

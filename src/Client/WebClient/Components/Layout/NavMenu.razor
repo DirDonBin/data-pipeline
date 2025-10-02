@@ -1,0 +1,127 @@
+﻿@using MudBlazor
+
+<div id="nav-panel">
+	<div class="top-row ps-3 navbar navbar-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="">
+				<img src="images/logo.png" />
+			</a>
+		</div>
+	</div>
+
+	<div class="sideblock">
+		<div>
+			<MudButton Href="pipeline-edit"
+					   StartIcon="@Icons.Material.Outlined.Add"
+					   Class="btn-data-pipeline text-center"
+					   IconSize="Size.Medium">
+				Новый Pipeline
+			</MudButton>
+
+
+			<div>
+				<p Style="color: #907F9E;">Pipelines</p>
+				<MudList T="object" Class="pipline-block">
+
+					<MudListItem Class="pipline-item">
+						<div class="pipline-item-body">
+							<div class="pipeline-data-status"></div>
+							<div class="pipeline-data-block">
+								<p Class="pipeline-data-name">Test Pipeline 1</p>
+								<p Class="pipeline-data-source">
+									источник: backpack.csv, backpack2.csv...
+								</p>
+								<p Class="pipeline-data-target">
+									таргет: postgresql1, postgresql2, postg...
+								</p>
+							</div>
+							<div class="pipeline-btns">
+								<MudIconButton Class="pipeline-btn-settings"
+											   Icon="@Icons.Material.Outlined.Settings"
+											   Href="pipeline/1" />
+							</div>
+						</div>
+					</MudListItem>
+
+					<MudListItem Class="pipline-item">
+						<div class="pipline-item-body">
+							<div class="pipeline-data-status success"></div>
+							<div class="pipeline-data-block">
+								<p Class="pipeline-data-name">Test Pipeline 1</p>
+								<p Class="pipeline-data-source">
+									источник: backpack.csv, backpack2.csv...
+								</p>
+								<p Class="pipeline-data-target">
+									таргет: postgresql1, postgresql2, postg...
+								</p>
+							</div>
+							<div class="pipeline-btns">
+								<MudIconButton Class="pipeline-btn-settings"
+											   Icon="@Icons.Material.Outlined.Settings"
+											   Href="pipeline/2" />
+							</div>
+						</div>
+					</MudListItem>
+
+					<MudListItem Class="pipline-item">
+						<div class="pipline-item-body">
+							<div class="pipeline-data-status fail"></div>
+							<div class="pipeline-data-block">
+								<p Class="pipeline-data-name">Test Pipeline 1</p>
+								<p Class="pipeline-data-source">
+									источник: backpack.csv, backpack2.csv...
+								</p>
+								<p Class="pipeline-data-target">
+									таргет: postgresql1, postgresql2, postg...
+								</p>
+							</div>
+							<div class="pipeline-btns">
+								<MudIconButton Class="pipeline-btn-settings"
+											   Icon="@Icons.Material.Outlined.Settings"
+											   Href="pipeline/3" />
+							</div>
+						</div>
+					</MudListItem>
+
+				</MudList>
+			</div>
+
+		</div>
+
+
+
+		<div class="clip-down nav">
+
+			<MudButton Href="connections"
+					   StartIcon="@Icons.Material.Outlined.Cloud"
+					   Class="nav-link btn-data-pipeline btn-outline-primary text-start"
+					   IconSize="Size.Small">
+				Источники и таргеты
+			</MudButton>
+
+			<MudButton Href="faq"
+					   StartIcon="@Icons.Material.Outlined.HelpOutline"
+					   Class="nav-link btn-data-pipeline btn-outline-primary text-start"
+					   IconSize="Size.Small">
+				FAQ
+			</MudButton>
+
+			<div class="user-block">
+				<MudImage Src="https://i.pinimg.com/736x/a5/d7/cf/a5d7cf6165451c26f6d223bd736f824b.jpg" />
+				<div class="user-name">
+					<div>
+						<p>Addison Diaz</p>
+					</div>
+				</div>
+				<div class="btn-exit-block">
+					<div>
+						<MudIconButton Class="btn-exit"
+									   Icon="@Icons.Material.Outlined.Logout"
+									   OnClick="@(async () => await LogoutAsync())"/>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

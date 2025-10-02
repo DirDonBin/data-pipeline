@@ -1,0 +1,15 @@
+﻿@using MudBlazor
+
+<div>
+	@foreach (var item in ConnectonTargetItems)
+	{
+		<ConnectionTargetItem Info="item"
+							  OnDeleteAction="@(() => OnDeleteAction(item.Id))" />
+	}
+
+	<MudButton StartIcon="@Icons.Material.Outlined.Add"
+			   Class="add-new-pipline-btn"
+			   OnClick="OnClickCreateConnection">
+		Подключение
+	</MudButton>
+</div>

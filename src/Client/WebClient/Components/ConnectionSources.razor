@@ -1,0 +1,26 @@
+﻿@using MudBlazor
+
+<div>
+	@foreach (var item in ConnectonItems)
+	{
+		<ConnectionSourceItem Info="item"
+							  OnDeleteAction="@(() => OnDeleteAction(item.Id))" />
+	}
+
+	@if (_variableConnectonItems.Count > 0)
+	{
+		<MudButton StartIcon="@Icons.Material.Outlined.Add"
+				   Class="add-new-pipline-btn"
+				   OnClick="OnClickCreateConnection">
+			Подключение
+		</MudButton>
+	}
+	else
+	{
+		<MudButton StartIcon="@Icons.Material.Outlined.Add"
+				   Class="add-new-pipline-btn"
+				   OnClick="OnClickCreateConnection">
+			Подключение
+		</MudButton>
+	}
+</div>

@@ -1,0 +1,126 @@
+﻿::deep.login-page {
+    background-image: url('./images/00-dtt-hp-login.png');
+    height: 100vh;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+::deep .description-block,
+::deep .login-block {
+    height: 100vh;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+::deep .login-block {
+    background-color: rgba(227, 219, 234, 1);
+    border-radius: 20px 0 0 10px;
+    color: rgba(150, 77, 205, 1);
+    text-align: center;
+}
+
+::deep .logo {
+    margin-top: 25px;
+}
+
+::deep .info-block {
+    height: 210px;
+    width: 750px;
+    margin-top: 19px;
+    color: #FFF;
+    text-align: center;
+    border: 1px solid rgba(73, 73, 73, 1);
+    border-radius: 12px;
+    background: rgba(39, 32, 45, .6);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+    ::deep .info-block svg {
+        fill: #FFF;
+    }
+
+    ::deep .info-block h5 {
+        color: rgba(108, 245, 253, 1);
+        font-weight: 700;
+        font-size: 12px;
+    }
+
+    ::deep .info-block h6 {
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    ::deep .info-block p {
+        font-size: 14px;
+    }
+
+::deep .login-block h1 {
+    font-weight: 700;
+    font-size: 50px;
+    margin-top: 135px;
+    color: rgba(122, 54, 174, 1);
+}
+
+::deep .login-block p{
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 41px;
+}
+
+::deep .login-block h5 {
+    font-weight: 700;
+    font-size: 24px;
+    margin-top: 50px;
+    color: rgba(122, 54, 174, 1);
+}
+
+::deep .login-block .login-form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 60%;
+    margin-top: 20px;
+}
+
+    ::deep .login-block .login-form .login-btn {
+        background: linear-gradient(90.3deg, #7A36AE 0.16%, #64EDF0 101.62%);
+        color: #FFFFFF;
+        border-radius: 15px;
+        margin-top: 30px;
+        height: 47px;
+    }
+
+    ::deep .login-block .login-form .mud-input {
+        background: #fff;
+        border-radius: 15px;
+        height: 47px;
+        border: none;
+    }
+
+        ::deep .login-block .login-form .mud-input .mud-input-outlined-border {
+            border: none;
+        }
+
+    ::deep .login-block .login-form .mud-input-label {
+        margin: 0;
+        text-align: start;
+        margin-top: 13px;
+        margin-bottom: 5px;
+    }
+
+        ::deep .login-block .login-form .mud-input .mud-input-adornment {
+            margin-left: 22px;
+            margin-right: 18px;
+        }
+
+            ::deep .login-block .login-form .mud-input .mud-input-adornment svg {
+                fill: rgba(164, 164, 164, 1);
+            }

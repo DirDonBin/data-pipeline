@@ -1,0 +1,75 @@
+﻿@page "/login"
+@using MudBlazor
+@layout EmptyLayout
+
+<div class="login-page">
+	<div class="description-block">
+		<img src="./images/logo.png" class="logo" />
+
+		<div class="info-block">
+			<h5>ИНФРАСТРУКТУРА ОБРАБОТКИ ДАННЫХ</h5>
+			<MudBlazor.MudIcon Icon="@Icons.Material.Outlined.Cloud" />
+			<h6>Надежность и масштабируемость</h6>
+			<p>построение и поддержка масштабируемой инфраструктуры обработки данных</p>
+		</div>
+
+		<div class="info-block">
+			<h5>ИНТЕЛЛЕКТУАЛЬНЫЙ ЦИФРОВОЙ ИНЖЕНЕР ДАННЫХ</h5>
+			<MudBlazor.MudIcon Icon="@Icons.Material.Outlined.Android" />
+			<h6>Автоматизация процессов</h6>
+			<p>Автоматический анализ источников данных, выбора оптимальных решений для хранения, оркестрации</p>
+		</div>
+
+		<div class="info-block">
+			<h5>AI ПРОЕКТИРОВАНИЕ ETL-ПРОЦЕССОВ</h5>
+			<MudBlazor.MudIcon Icon="@Icons.Material.Outlined.AccessTime" />
+			<h6>Существенная экономия времени</h6>
+			<p>Сокращение времени рутинных операций построения ETL-процессов и рабочих пайплайнов</p>
+		</div>
+
+		<div class="info-block">
+			<h5>ЦИФРОВИЗАЦИЯ ГОСУДАРСТВЕННОГО УПРАВЛЕНИЯ</h5>
+			<MudBlazor.MudIcon Icon="@Icons.Material.Outlined.LocationCity" />
+			<h6>Соответствие стратегическим целям</h6>
+			<p>эффективное управление данными и оперативное решение бизнес- и социально значимых задач</p>
+		</div>
+	</div>
+	<div class="login-block">
+		<h1>Добро пожаловать в<br /> DataPipeline</h1>
+		<p>
+			При помощи нашей интеллектуальной системы цифровой<br />
+			обработки данных вы сможете анализировать источники данных,<br />
+			проектировать ETL-процессы, выбирать оптимальные решения<br />
+			для хранения и настройки оркестрации.
+		</p>
+		<h5>
+			Авторизуйтесь, чтобы начать
+		</h5>
+
+		<div class="login-form">
+
+			<MudInputLabel>Логин</MudInputLabel>
+			<MudInput @bind-Value="_login"
+					  InputType="InputType.Text" 
+					  AdornmentIcon="@Icons.Material.Outlined.Search" 
+					  Placeholder="@("@yourname")" 
+					  Adornment="Adornment.Start"
+					  Variant="Variant.Outlined" />
+
+
+			<MudInputLabel>Пароль</MudInputLabel>
+			<MudInput @bind-Value="_password"
+					  InputType="InputType.Password"
+					  AdornmentIcon="@Icons.Material.Outlined.Key" 
+					  Placeholder="*********"
+					  Adornment="Adornment.Start"
+					  Variant="Variant.Outlined" 
+					  />
+
+			<MudButton Class="login-btn"
+					   OnClick="@(async () => await OnClickLogin())">
+				Авторизация
+			</MudButton>
+		</div>
+	</div>
+</div>

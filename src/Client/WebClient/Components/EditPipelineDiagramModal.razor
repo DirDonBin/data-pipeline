@@ -1,0 +1,28 @@
+﻿@using MudBlazor
+
+<div class="modal-content">
+	<MudTextField @ref="_textField"
+				  @bind-Value="Value"
+				  @bind-Text="Value"
+				  Variant="Variant.Outlined"
+				  Adornment="Adornment.End"
+				  ReadOnly="!_isEdit"
+				  Lines="30" />
+	@if (CanEdit)
+	{
+		if (_isEdit)
+		{
+			<MudButton Class="edit-btn"
+					   OnClick="OnClickSave">
+				Сохранить
+			</MudButton>
+		}
+		else
+		{
+			<MudButton Class="edit-btn"
+					   OnClick="OnClickEdit">
+				Редактировать
+			</MudButton>
+		}
+	}
+</div>

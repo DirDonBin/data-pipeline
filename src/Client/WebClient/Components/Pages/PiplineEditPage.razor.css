@@ -1,0 +1,133 @@
+﻿::deep .mud-paper {
+    background-color: unset;
+    box-shadow: none;
+}
+
+
+::deep .mud-stepper .mud-stepper-nav .mud-step .mud-step-label .mud-step-label-icon {
+    background: #483F50;
+    border: 1px solid #64EDF0;
+    height: 80px;
+    color: #DDD;
+    width: 80px;
+}
+
+::deep .mud-stepper .mud-stepper-nav .mud-step .mud-step-label.mud-step-label-active .mud-step-label-icon,
+::deep .mud-stepper .mud-stepper-nav .mud-step.mud-step-completed .mud-step-label .mud-step-label-icon {
+    background: #5FDFF2 !important;
+    color: #000;
+    fill: #fff;
+}
+
+    ::deep .mud-stepper .mud-stepper-nav .mud-step.mud-step-completed .mud-step-label .mud-step-label-icon svg{
+        width: 40px;
+        height: 40px;
+    }
+
+    ::deep .mud-stepper .mud-stepper-nav .mud-step .mud-step-label .mud-step-label-content p,
+    ::deep .mud-stepper .mud-stepper-nav .mud-step .mud-step-label .mud-step-label-content span {
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+::deep .mud-stepper .mud-stepper-nav .mud-step .mud-step-label .mud-step-label-content p {
+    color: #64EDF0;
+}
+
+::deep .mud-stepper .mud-stepper-nav .mud-step .mud-step-label .mud-step-label-content span {
+    color: #DDDDDD;
+}
+
+
+    ::deep .mud-stepper .mud-stepper-nav .mud-step .mud-step-label .mud-step-label-icon span {
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+::deep .mud-stepper.mud-stepper__horizontal.mud-stepper__center-labels .mud-stepper-nav-connector {
+    margin: 65px 0;
+}
+
+::deep .mud-stepper.mud-stepper__horizontal.mud-stepper__center-labels .mud-stepper-nav-connector .mud-stepper-nav-connector-line {
+    border-style: dashed;
+}
+
+
+::deep .mud-stepper-button-complete,
+::deep .mud-stepper-button-next,
+::deep .mud-stepper-button-previous {
+    font-weight: 600;
+    padding: 10px 34px;
+    border-radius: 10px;
+}
+
+::deep .mud-stepper-button-next,
+::deep .mud-stepper-button-previous:not(:disabled) {
+    background: #CBC4D0;
+}
+
+::deep .mud-stepper-button-complete {
+    background: #64EDF0;
+}
+
+
+    ::deep .mud-stepper-button-previous:disabled{
+        display: none;
+    }
+
+    ::deep .mud-stepper-button-next:hover span,
+    ::deep .mud-stepper-button-complete:hover span,
+    ::deep .mud-stepper-button-previous:hover span {
+        color: #fff;
+    }
+
+    ::deep .mud-stepper-button-next span,
+    ::deep .mud-stepper-button-complete span,
+    ::deep .mud-stepper-button-previous span {
+        color: #000;
+    }
+
+::deep .summary {
+    display: flex;
+    flex-wrap: nowrap;
+    background: #E2E2E21A;
+    color: #DDDDDD;
+    font-weight: 600;
+    line-height: 28px;
+    font-size: 16px;
+    padding: 30px 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+    ::deep .summary p {
+        color: #DDDDDD80;
+    }
+
+    ::deep .summary ul {
+        margin-bottom: 30px;
+        list-style: none;
+    }
+
+    ::deep .summary li {
+        margin-bottom: 5px;
+    }
+
+    ::deep .summary .summary-source,
+    ::deep .summary .summary-target {
+        width: 50%;
+    }
+
+    ::deep .summary .summary-number {
+        list-style: disc;
+        color: #64EDF0;
+    }
+
+::deep div.pipeline-name,
+::deep div.pipeline-name:hover,
+::deep input.pipeline-name,
+::deep input.pipeline-name:hover {
+    background: #57575733;
+    color: #DDDDDD;
+    border-bottom: none !important;
+    font-size: 18px;
+}

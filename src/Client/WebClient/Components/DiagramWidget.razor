@@ -1,0 +1,28 @@
+﻿@using Blazor.Diagrams.Components.Controls
+@using Blazor.Diagrams.Components.Renderers;
+@using MudBlazor
+@using WebClient.Models
+
+<div class="card-item">
+	<MudIconButton Icon="@Icons.Material.Outlined.Edit"
+				   Class="card-edit-btn" 
+				   OnClick="OnClickEdit" />
+	
+	<h5 class="card-title">@Node.Name</h5>
+	<div class="card-content">
+		<p>
+			@Node.Content
+		</p>
+	</div>
+	@foreach (var port in Node.Ports)
+	{
+		// In case you have any ports to show
+		// IMPORTANT: You are always in charge of rendering ports
+		<PortRenderer @key="port" Port="port" />
+	}
+</div>
+
+@code {
+	// This gets filled by the library
+	[Parameter] public DiagramWidgetNode Node { get; set; } = null!;
+}
